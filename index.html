@@ -6,8 +6,8 @@
 <title>SLNA</title>
 <style>
   :root {
-    --orange: #ff6a00;
-    --orange-glow: #ffae42;
+    --orange: #00e5ff;
+    --orange-glow: #a259ff;
   }
 
   * {
@@ -41,14 +41,14 @@
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 4px solid rgba(255, 106, 0, 0.15);
+    border: 4px solid rgba(0, 229, 255, 0.15);
     border-top: 4px solid var(--orange);
     animation: spin 1s linear infinite;
     margin-bottom: 28px;
   }
 
   .loading-text {
-    color: #ffb066;
+    color: #7fe8ff;
     font-size: 15px;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -117,11 +117,11 @@
     font-size: clamp(60px, 15vw, 150px);
     font-weight: 900;
     letter-spacing: 10px;
-    background: linear-gradient(180deg, #ffdd8a 0%, #ff8a00 45%, #ff5900 100%);
+    background: linear-gradient(180deg, #b6f7ff 0%, #00e5ff 40%, #a259ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 40px rgba(255, 140, 0, 0.5);
+    text-shadow: 0 0 40px rgba(0, 229, 255, 0.5);
     position: relative;
   }
 
@@ -131,7 +131,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(180deg, #ffdd8a 0%, #ff8a00 45%, #ff5900 100%);
+    background: linear-gradient(180deg, #b6f7ff 0%, #00e5ff 40%, #a259ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -142,7 +142,7 @@
 
   .subtitle {
     margin-top: 18px;
-    color: #ffb066;
+    color: #7fe8ff;
     letter-spacing: 6px;
     font-size: 14px;
     text-transform: uppercase;
@@ -198,6 +198,206 @@
     20% { opacity: 0.8; }
     100% { transform: translateY(-120px); opacity: 0; }
   }
+
+  /* ===== HEARTS lơ lửng khắp màn hình ===== */
+  .hearts-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -40px;
+    opacity: 0;
+    color: var(--orange);
+    filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.7));
+    animation-name: heartFloat, heartSway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+  }
+
+  .heart svg {
+    display: block;
+  }
+
+  @keyframes heartFloat {
+    0% {
+      transform: translateY(0) rotate(0deg) scale(var(--s, 1));
+      opacity: 0;
+    }
+    8% { opacity: 0.9; }
+    85% { opacity: 0.7; }
+    100% {
+      transform: translateY(-110vh) rotate(20deg) scale(var(--s, 1));
+      opacity: 0;
+    }
+  }
+
+  @keyframes heartSway {
+    0%, 100% { margin-left: 0; }
+    50% { margin-left: 30px; }
+  }
+
+  /* ===== 4 KHỐI LẬP PHƯƠNG ẢNH bay quanh màn hình ===== */
+  .cube-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 64px;
+    perspective: 700px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0;
+    animation-name: cubeOrbit-1, cubeFadeIn;
+    animation-timing-function: linear, ease;
+    animation-iteration-count: infinite, 1;
+    animation-fill-mode: none, forwards;
+    animation-duration: 16s, 1s;
+    animation-delay: 5.4s, 5.4s;
+  }
+
+  .cube-scene.c2 {
+    width: 46px;
+    height: 46px;
+    animation-name: cubeOrbit-2, cubeFadeIn;
+    animation-duration: 13s, 1s;
+    animation-delay: 5.7s, 5.7s;
+  }
+  .cube-scene.c2 .cube-face { width: 46px; height: 46px; }
+
+  .cube-scene.c3 {
+    width: 54px;
+    height: 54px;
+    animation-name: cubeOrbit-3, cubeFadeIn;
+    animation-duration: 19s, 1s;
+    animation-delay: 6.0s, 6.0s;
+  }
+  .cube-scene.c3 .cube-face { width: 54px; height: 54px; }
+
+  .cube-scene.c4 {
+    width: 38px;
+    height: 38px;
+    animation-name: cubeOrbit-4, cubeFadeIn;
+    animation-duration: 11s, 1s;
+    animation-delay: 6.3s, 6.3s;
+  }
+  .cube-scene.c4 .cube-face { width: 38px; height: 38px; }
+
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cubeSpin 5s linear infinite;
+  }
+
+  .cube-scene.c2 .cube { animation-duration: 3.6s; }
+  .cube-scene.c3 .cube { animation-duration: 6.2s; }
+  .cube-scene.c4 .cube { animation-duration: 2.8s; }
+
+  .cube-face {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eafcff;
+    background-color: rgba(0,229,255,0.15);
+    background-image: var(--cube-img);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(255,255,255,0.45);
+    box-shadow: 0 0 18px rgba(0,229,255,0.35), inset 0 0 12px rgba(255,255,255,0.15);
+    backdrop-filter: blur(1px);
+  }
+
+  .cube-scene.c1 { --cube-img: url('images/1.jpg'); }
+  .cube-scene.c2 { --cube-img: url('images/1.jpg'); }
+  .cube-scene.c3 { --cube-img: url('images/1.jpg'); }
+  .cube-scene.c4 { --cube-img: url('images/1.jpg'); }
+
+  .cube-face.front  { transform: translateZ(32px); }
+  .cube-face.back   { transform: rotateY(180deg) translateZ(32px); }
+  .cube-face.right  { transform: rotateY(90deg) translateZ(32px); }
+  .cube-face.left   { transform: rotateY(-90deg) translateZ(32px); }
+  .cube-face.top    { transform: rotateX(90deg) translateZ(32px); }
+  .cube-face.bottom { transform: rotateX(-90deg) translateZ(32px); }
+
+  .cube-scene.c2 .cube-face.front  { transform: translateZ(23px); }
+  .cube-scene.c2 .cube-face.back   { transform: rotateY(180deg) translateZ(23px); }
+  .cube-scene.c2 .cube-face.right  { transform: rotateY(90deg) translateZ(23px); }
+  .cube-scene.c2 .cube-face.left   { transform: rotateY(-90deg) translateZ(23px); }
+  .cube-scene.c2 .cube-face.top    { transform: rotateX(90deg) translateZ(23px); }
+  .cube-scene.c2 .cube-face.bottom { transform: rotateX(-90deg) translateZ(23px); }
+
+  .cube-scene.c3 .cube-face.front  { transform: translateZ(27px); }
+  .cube-scene.c3 .cube-face.back   { transform: rotateY(180deg) translateZ(27px); }
+  .cube-scene.c3 .cube-face.right  { transform: rotateY(90deg) translateZ(27px); }
+  .cube-scene.c3 .cube-face.left   { transform: rotateY(-90deg) translateZ(27px); }
+  .cube-scene.c3 .cube-face.top    { transform: rotateX(90deg) translateZ(27px); }
+  .cube-scene.c3 .cube-face.bottom { transform: rotateX(-90deg) translateZ(27px); }
+
+  .cube-scene.c4 .cube-face.front  { transform: translateZ(19px); }
+  .cube-scene.c4 .cube-face.back   { transform: rotateY(180deg) translateZ(19px); }
+  .cube-scene.c4 .cube-face.right  { transform: rotateY(90deg) translateZ(19px); }
+  .cube-scene.c4 .cube-face.left   { transform: rotateY(-90deg) translateZ(19px); }
+  .cube-scene.c4 .cube-face.top    { transform: rotateX(90deg) translateZ(19px); }
+  .cube-scene.c4 .cube-face.bottom { transform: rotateX(-90deg) translateZ(19px); }
+
+  @keyframes cubeSpin {
+    from { transform: rotateX(0) rotateY(0); }
+    to   { transform: rotateX(360deg) rotateY(360deg); }
+  }
+
+  @keyframes cubeFadeIn {
+    to { opacity: 1; }
+  }
+
+  /* 4 đường bay khác nhau, mỗi khối lượn theo quỹ đạo riêng quanh màn hình */
+  @keyframes cubeOrbit-1 {
+    0%   { top: 8vh;  left: 8vw;  transform: translateY(0); }
+    12%  { top: 6vh;  left: 45vw; transform: translateY(-14px); }
+    25%  { top: 10vh; left: 85vw; transform: translateY(0); }
+    37%  { top: 45vh; left: 90vw; transform: translateY(14px); }
+    50%  { top: 82vh; left: 85vw; transform: translateY(0); }
+    62%  { top: 88vh; left: 45vw; transform: translateY(-14px); }
+    75%  { top: 82vh; left: 8vw;  transform: translateY(0); }
+    87%  { top: 45vh; left: 5vw;  transform: translateY(14px); }
+    100% { top: 8vh;  left: 8vw;  transform: translateY(0); }
+  }
+
+  @keyframes cubeOrbit-2 {
+    0%   { top: 85vh; left: 85vw; transform: translateY(0); }
+    15%  { top: 82vh; left: 45vw; transform: translateY(12px); }
+    30%  { top: 88vh; left: 8vw;  transform: translateY(0); }
+    45%  { top: 50vh; left: 5vw;  transform: translateY(-12px); }
+    60%  { top: 12vh; left: 10vw; transform: translateY(0); }
+    75%  { top: 8vh;  left: 50vw; transform: translateY(12px); }
+    90%  { top: 15vh; left: 88vw; transform: translateY(0); }
+    100% { top: 85vh; left: 85vw; transform: translateY(0); }
+  }
+
+  @keyframes cubeOrbit-3 {
+    0%   { top: 50vh; left: 5vw;  transform: translateY(0) scale(1); }
+    20%  { top: 15vh; left: 30vw; transform: translateY(-10px) scale(1.05); }
+    40%  { top: 10vh; left: 70vw; transform: translateY(0) scale(1); }
+    60%  { top: 50vh; left: 92vw; transform: translateY(10px) scale(1.05); }
+    80%  { top: 85vh; left: 60vw; transform: translateY(0) scale(1); }
+    100% { top: 50vh; left: 5vw;  transform: translateY(0) scale(1); }
+  }
+
+  @keyframes cubeOrbit-4 {
+    0%   { top: 20vh; left: 70vw; transform: translateY(0); }
+    25%  { top: 55vh; left: 88vw; transform: translateY(-10px); }
+    50%  { top: 80vh; left: 40vw; transform: translateY(0); }
+    75%  { top: 55vh; left: 10vw; transform: translateY(10px); }
+    100% { top: 20vh; left: 70vw; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
@@ -207,6 +407,52 @@
     <div class="loading-text">Đang tải</div>
     <div class="progress-bar">
       <div class="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="hearts-layer" id="heartsLayer"></div>
+
+  <div class="cube-scene c1">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+  </div>
+
+  <div class="cube-scene c2">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+  </div>
+
+  <div class="cube-scene c3">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+  </div>
+
+  <div class="cube-scene c4">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
     </div>
   </div>
 
@@ -231,6 +477,40 @@
     p.style.animationDuration = (3 + Math.random() * 3) + 's';
     container.appendChild(p);
   }
+
+  // Tạo trái tim bay lơ lửng khắp màn hình, bắt đầu từ sau khi logo xuất hiện
+  const heartsLayer = document.getElementById('heartsLayer');
+  const heartSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21s-6.7-4.35-9.3-8.1C1 10.4 1.2 7 4 5.3c2.1-1.3 4.6-.8 6 1 1 .1 1 .1 2 0 1.4-1.8 3.9-2.3 6-1 2.8 1.7 3 5.1 1.3 7.6C18.7 16.65 12 21 12 21z"/>
+    </svg>`;
+
+  function spawnHeart() {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.innerHTML = heartSVG;
+
+    const size = 0.5 + Math.random() * 1.4;      // kích thước ngẫu nhiên
+    const duration = 6 + Math.random() * 7;        // tốc độ bay lên
+    const swayDuration = 2 + Math.random() * 2;    // tốc độ đung đưa
+    const left = Math.random() * 100;              // vị trí ngang
+    const delay = Math.random() * 2;
+
+    h.style.left = left + 'vw';
+    h.style.setProperty('--s', size);
+    h.style.animationDuration = duration + 's, ' + swayDuration + 's';
+    h.style.animationDelay = delay + 's, 0s';
+
+    heartsLayer.appendChild(h);
+
+    // tự xoá sau khi bay xong để không phình DOM
+    setTimeout(() => h.remove(), (duration + delay) * 1000 + 200);
+  }
+
+  // Bắt đầu thả tim liên tục sau khi màn hình chính hiện ra (~5.2s)
+  setTimeout(() => {
+    spawnHeart();
+    setInterval(spawnHeart, 450);
+  }, 5300);
 </script>
 
 </body>

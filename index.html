@@ -241,162 +241,95 @@
     50% { margin-left: 30px; }
   }
 
-  /* ===== 4 KHỐI LẬP PHƯƠNG ẢNH bay quanh màn hình ===== */
-  .cube-scene {
+  /* ===== 4 ẢNH bay lơ lửng quanh màn hình ===== */
+  .float-img {
     position: fixed;
     top: 0;
     left: 0;
-    width: 64px;
-    height: 64px;
-    perspective: 700px;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px solid rgba(255,255,255,0.45);
+    box-shadow: 0 0 28px rgba(0,229,255,0.4);
     z-index: 6;
     pointer-events: none;
     opacity: 0;
-    animation-name: cubeOrbit-1, cubeFadeIn;
-    animation-timing-function: linear, ease;
+    animation-name: floatOrbit-1, floatFadeIn;
+    animation-timing-function: ease-in-out, ease;
     animation-iteration-count: infinite, 1;
     animation-fill-mode: none, forwards;
     animation-duration: 16s, 1s;
     animation-delay: 5.4s, 5.4s;
   }
 
-  .cube-scene.c2 {
-    width: 46px;
-    height: 46px;
-    animation-name: cubeOrbit-2, cubeFadeIn;
+  .float-img.f2 {
+    width: 110px;
+    height: 110px;
+    animation-name: floatOrbit-2, floatFadeIn;
     animation-duration: 13s, 1s;
     animation-delay: 5.7s, 5.7s;
   }
-  .cube-scene.c2 .cube-face { width: 46px; height: 46px; }
 
-  .cube-scene.c3 {
-    width: 54px;
-    height: 54px;
-    animation-name: cubeOrbit-3, cubeFadeIn;
+  .float-img.f3 {
+    width: 125px;
+    height: 125px;
+    animation-name: floatOrbit-3, floatFadeIn;
     animation-duration: 19s, 1s;
     animation-delay: 6.0s, 6.0s;
   }
-  .cube-scene.c3 .cube-face { width: 54px; height: 54px; }
 
-  .cube-scene.c4 {
-    width: 38px;
-    height: 38px;
-    animation-name: cubeOrbit-4, cubeFadeIn;
+  .float-img.f4 {
+    width: 95px;
+    height: 95px;
+    animation-name: floatOrbit-4, floatFadeIn;
     animation-duration: 11s, 1s;
     animation-delay: 6.3s, 6.3s;
   }
-  .cube-scene.c4 .cube-face { width: 38px; height: 38px; }
 
-  .cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: cubeSpin 5s linear infinite;
-  }
-
-  .cube-scene.c2 .cube { animation-duration: 3.6s; }
-  .cube-scene.c3 .cube { animation-duration: 6.2s; }
-  .cube-scene.c4 .cube { animation-duration: 2.8s; }
-
-  .cube-face {
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #eafcff;
-    background-color: rgba(0,229,255,0.15);
-    background-image: var(--cube-img);
-    background-size: cover;
-    background-position: center;
-    border: 2px solid rgba(255,255,255,0.45);
-    box-shadow: 0 0 18px rgba(0,229,255,0.35), inset 0 0 12px rgba(255,255,255,0.15);
-    backdrop-filter: blur(1px);
-  }
-
-  .cube-scene.c1 { --cube-img: url('images/1.jpg'); }
-  .cube-scene.c2 { --cube-img: url('images/1.jpg'); }
-  .cube-scene.c3 { --cube-img: url('images/1.jpg'); }
-  .cube-scene.c4 { --cube-img: url('images/1.jpg'); }
-
-  .cube-face.front  { transform: translateZ(32px); }
-  .cube-face.back   { transform: rotateY(180deg) translateZ(32px); }
-  .cube-face.right  { transform: rotateY(90deg) translateZ(32px); }
-  .cube-face.left   { transform: rotateY(-90deg) translateZ(32px); }
-  .cube-face.top    { transform: rotateX(90deg) translateZ(32px); }
-  .cube-face.bottom { transform: rotateX(-90deg) translateZ(32px); }
-
-  .cube-scene.c2 .cube-face.front  { transform: translateZ(23px); }
-  .cube-scene.c2 .cube-face.back   { transform: rotateY(180deg) translateZ(23px); }
-  .cube-scene.c2 .cube-face.right  { transform: rotateY(90deg) translateZ(23px); }
-  .cube-scene.c2 .cube-face.left   { transform: rotateY(-90deg) translateZ(23px); }
-  .cube-scene.c2 .cube-face.top    { transform: rotateX(90deg) translateZ(23px); }
-  .cube-scene.c2 .cube-face.bottom { transform: rotateX(-90deg) translateZ(23px); }
-
-  .cube-scene.c3 .cube-face.front  { transform: translateZ(27px); }
-  .cube-scene.c3 .cube-face.back   { transform: rotateY(180deg) translateZ(27px); }
-  .cube-scene.c3 .cube-face.right  { transform: rotateY(90deg) translateZ(27px); }
-  .cube-scene.c3 .cube-face.left   { transform: rotateY(-90deg) translateZ(27px); }
-  .cube-scene.c3 .cube-face.top    { transform: rotateX(90deg) translateZ(27px); }
-  .cube-scene.c3 .cube-face.bottom { transform: rotateX(-90deg) translateZ(27px); }
-
-  .cube-scene.c4 .cube-face.front  { transform: translateZ(19px); }
-  .cube-scene.c4 .cube-face.back   { transform: rotateY(180deg) translateZ(19px); }
-  .cube-scene.c4 .cube-face.right  { transform: rotateY(90deg) translateZ(19px); }
-  .cube-scene.c4 .cube-face.left   { transform: rotateY(-90deg) translateZ(19px); }
-  .cube-scene.c4 .cube-face.top    { transform: rotateX(90deg) translateZ(19px); }
-  .cube-scene.c4 .cube-face.bottom { transform: rotateX(-90deg) translateZ(19px); }
-
-  @keyframes cubeSpin {
-    from { transform: rotateX(0) rotateY(0); }
-    to   { transform: rotateX(360deg) rotateY(360deg); }
-  }
-
-  @keyframes cubeFadeIn {
+  @keyframes floatFadeIn {
     to { opacity: 1; }
   }
 
-  /* 4 đường bay khác nhau, mỗi khối lượn theo quỹ đạo riêng quanh màn hình */
-  @keyframes cubeOrbit-1 {
-    0%   { top: 8vh;  left: 8vw;  transform: translateY(0); }
-    12%  { top: 6vh;  left: 45vw; transform: translateY(-14px); }
-    25%  { top: 10vh; left: 85vw; transform: translateY(0); }
-    37%  { top: 45vh; left: 90vw; transform: translateY(14px); }
-    50%  { top: 82vh; left: 85vw; transform: translateY(0); }
-    62%  { top: 88vh; left: 45vw; transform: translateY(-14px); }
-    75%  { top: 82vh; left: 8vw;  transform: translateY(0); }
-    87%  { top: 45vh; left: 5vw;  transform: translateY(14px); }
-    100% { top: 8vh;  left: 8vw;  transform: translateY(0); }
+  /* 4 đường bay khác nhau quanh màn hình, có nhấp nhô + xoay nhẹ như lơ lửng */
+  @keyframes floatOrbit-1 {
+    0%   { top: 8vh;  left: 8vw;  transform: translateY(0) rotate(0deg); }
+    12%  { top: 6vh;  left: 45vw; transform: translateY(-14px) rotate(4deg); }
+    25%  { top: 10vh; left: 85vw; transform: translateY(0) rotate(0deg); }
+    37%  { top: 45vh; left: 90vw; transform: translateY(14px) rotate(-4deg); }
+    50%  { top: 82vh; left: 85vw; transform: translateY(0) rotate(0deg); }
+    62%  { top: 88vh; left: 45vw; transform: translateY(-14px) rotate(4deg); }
+    75%  { top: 82vh; left: 8vw;  transform: translateY(0) rotate(0deg); }
+    87%  { top: 45vh; left: 5vw;  transform: translateY(14px) rotate(-4deg); }
+    100% { top: 8vh;  left: 8vw;  transform: translateY(0) rotate(0deg); }
   }
 
-  @keyframes cubeOrbit-2 {
-    0%   { top: 85vh; left: 85vw; transform: translateY(0); }
-    15%  { top: 82vh; left: 45vw; transform: translateY(12px); }
-    30%  { top: 88vh; left: 8vw;  transform: translateY(0); }
-    45%  { top: 50vh; left: 5vw;  transform: translateY(-12px); }
-    60%  { top: 12vh; left: 10vw; transform: translateY(0); }
-    75%  { top: 8vh;  left: 50vw; transform: translateY(12px); }
-    90%  { top: 15vh; left: 88vw; transform: translateY(0); }
-    100% { top: 85vh; left: 85vw; transform: translateY(0); }
+  @keyframes floatOrbit-2 {
+    0%   { top: 85vh; left: 85vw; transform: translateY(0) rotate(0deg); }
+    15%  { top: 82vh; left: 45vw; transform: translateY(12px) rotate(-4deg); }
+    30%  { top: 88vh; left: 8vw;  transform: translateY(0) rotate(0deg); }
+    45%  { top: 50vh; left: 5vw;  transform: translateY(-12px) rotate(4deg); }
+    60%  { top: 12vh; left: 10vw; transform: translateY(0) rotate(0deg); }
+    75%  { top: 8vh;  left: 50vw; transform: translateY(12px) rotate(-4deg); }
+    90%  { top: 15vh; left: 88vw; transform: translateY(0) rotate(0deg); }
+    100% { top: 85vh; left: 85vw; transform: translateY(0) rotate(0deg); }
   }
 
-  @keyframes cubeOrbit-3 {
+  @keyframes floatOrbit-3 {
     0%   { top: 50vh; left: 5vw;  transform: translateY(0) scale(1); }
-    20%  { top: 15vh; left: 30vw; transform: translateY(-10px) scale(1.05); }
+    20%  { top: 15vh; left: 30vw; transform: translateY(-10px) scale(1.06); }
     40%  { top: 10vh; left: 70vw; transform: translateY(0) scale(1); }
-    60%  { top: 50vh; left: 92vw; transform: translateY(10px) scale(1.05); }
+    60%  { top: 50vh; left: 92vw; transform: translateY(10px) scale(1.06); }
     80%  { top: 85vh; left: 60vw; transform: translateY(0) scale(1); }
     100% { top: 50vh; left: 5vw;  transform: translateY(0) scale(1); }
   }
 
-  @keyframes cubeOrbit-4 {
-    0%   { top: 20vh; left: 70vw; transform: translateY(0); }
-    25%  { top: 55vh; left: 88vw; transform: translateY(-10px); }
-    50%  { top: 80vh; left: 40vw; transform: translateY(0); }
-    75%  { top: 55vh; left: 10vw; transform: translateY(10px); }
-    100% { top: 20vh; left: 70vw; transform: translateY(0); }
+  @keyframes floatOrbit-4 {
+    0%   { top: 20vh; left: 70vw; transform: translateY(0) rotate(0deg); }
+    25%  { top: 55vh; left: 88vw; transform: translateY(-10px) rotate(5deg); }
+    50%  { top: 80vh; left: 40vw; transform: translateY(0) rotate(0deg); }
+    75%  { top: 55vh; left: 10vw; transform: translateY(10px) rotate(-5deg); }
+    100% { top: 20vh; left: 70vw; transform: translateY(0) rotate(0deg); }
   }
 </style>
 </head>
@@ -412,49 +345,10 @@
 
   <div class="hearts-layer" id="heartsLayer"></div>
 
-  <div class="cube-scene c1">
-    <div class="cube">
-      <div class="cube-face front"></div>
-      <div class="cube-face back"></div>
-      <div class="cube-face right"></div>
-      <div class="cube-face left"></div>
-      <div class="cube-face top"></div>
-      <div class="cube-face bottom"></div>
-    </div>
-  </div>
-
-  <div class="cube-scene c2">
-    <div class="cube">
-      <div class="cube-face front"></div>
-      <div class="cube-face back"></div>
-      <div class="cube-face right"></div>
-      <div class="cube-face left"></div>
-      <div class="cube-face top"></div>
-      <div class="cube-face bottom"></div>
-    </div>
-  </div>
-
-  <div class="cube-scene c3">
-    <div class="cube">
-      <div class="cube-face front"></div>
-      <div class="cube-face back"></div>
-      <div class="cube-face right"></div>
-      <div class="cube-face left"></div>
-      <div class="cube-face top"></div>
-      <div class="cube-face bottom"></div>
-    </div>
-  </div>
-
-  <div class="cube-scene c4">
-    <div class="cube">
-      <div class="cube-face front"></div>
-      <div class="cube-face back"></div>
-      <div class="cube-face right"></div>
-      <div class="cube-face left"></div>
-      <div class="cube-face top"></div>
-      <div class="cube-face bottom"></div>
-    </div>
-  </div>
+  <img class="float-img f1" src="images/1.jpg" alt="">
+  <img class="float-img f2" src="images/1.jpg" alt="">
+  <img class="float-img f3" src="images/1.jpg" alt="">
+  <img class="float-img f4" src="images/1.jpg" alt="">
 
   <div class="main-content">
     <div class="particles" id="particles"></div>
